@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://lose.gd" type="Script" id=1]
+
+[node name="lose" type="Label"]
+margin_left = 121.511
+margin_top = 85.1971
+margin_right = 228.511
+margin_bottom = 116.197
+text = "you lose
+press r to restart"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

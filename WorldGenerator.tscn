@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://WorldGenerator.gd" type="Script" id=1]
+[ext_resource path="res://Block.tscn" type="PackedScene" id=2]
+
+[node name="WorldGenerator" type="Position2D"]
+script = ExtResource( 1 )
+block = ExtResource( 2 )
+grid_size = 16
+buffer = 40

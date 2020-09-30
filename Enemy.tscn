@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Enemy.gd" type="Script" id=1]
+[ext_resource path="res://light.png" type="Texture" id=2]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.540741, 0.762963, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.41748, 0.41748, 0.41748, 1, 0.671387, 0.668764, 0.668764, 1, 1, 1, 1, 0 )
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.237037, 0.474074, 0.688889, 0.8, 0.881481, 1 )
+colors = PoolColorArray( 0.992676, 0.904804, 0.00387764, 1, 0.977051, 0.668629, 0.0228996, 1, 0.98877, 0.2808, 0.0386238, 1, 0.855957, 0.123713, 0.123713, 1, 0.905882, 0.435294, 0.435294, 0, 0.945098, 0.666667, 0.666667, 0, 1, 1, 1, 0 )
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 4.12311
+
+[node name="Enemy" type="KinematicBody2D"]
+script = ExtResource( 1 )
+
+[node name="Fire" type="Node2D" parent="."]
+
+[node name="Smoke" type="CPUParticles2D" parent="Fire"]
+amount = 90
+local_coords = false
+emission_shape = 1
+emission_sphere_radius = 2.0
+direction = Vector2( 0, -1 )
+spread = 10.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 10.0
+linear_accel = 60.0
+color_ramp = SubResource( 1 )
+
+[node name="Fire" type="CPUParticles2D" parent="Fire"]
+amount = 300
+lifetime = 2.0
+local_coords = false
+emission_shape = 1
+emission_sphere_radius = 5.0
+direction = Vector2( 0, -1 )
+spread = 10.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 20.0
+color_ramp = SubResource( 4 )
+
+[node name="Light2D" type="Light2D" parent="Fire"]
+texture = ExtResource( 2 )
+texture_scale = 0.6
+color = Color( 1, 0.396078, 0.0352941, 1 )
+energy = 0.8
+shadow_enabled = true
+
+[node name="Light2D2" type="Light2D" parent="Fire"]
+texture = ExtResource( 2 )
+texture_scale = 0.1
+color = Color( 0.92549, 0.556863, 0.0313726, 1 )
+energy = 0.6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 7 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 8 )

@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=2]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.607407, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.486275, 0.486275, 0.486275, 0.196078, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+lifetime_randomness = 0.3
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 20.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 6.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color_ramp = SubResource( 2 )
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.422222, 0.837037, 1 )
+colors = PoolColorArray( 0.921875, 0.888115, 0.0576172, 1, 1, 0.65625, 0, 1, 0.921875, 0.265495, 0.0900269, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+lifetime_randomness = 0.4
+emission_shape = 1
+emission_sphere_radius = 2.0
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 10.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 3.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color_ramp = SubResource( 5 )
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 3.16478
+
+[node name="EnemyFire" type="KinematicBody2D"]
+
+[node name="Fire" type="Node2D" parent="."]
+
+[node name="Smoke" type="Particles2D" parent="Fire"]
+position = Vector2( 0.257034, -5.78304 )
+amount = 300
+lifetime = 6.0
+local_coords = false
+process_material = SubResource( 3 )
+
+[node name="Fire" type="Particles2D" parent="Fire"]
+amount = 200
+lifetime = 3.0
+speed_scale = 12.0
+local_coords = false
+process_material = SubResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 7 )
